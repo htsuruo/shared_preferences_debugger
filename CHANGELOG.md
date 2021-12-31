@@ -1,3 +1,5 @@
-## 0.0.1
+## 0.0.2
+- Fix README
 
-- Initial publish.
+## 0.0.1
+- Initial release
