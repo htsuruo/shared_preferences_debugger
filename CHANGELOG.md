@@ -1,5 +1,8 @@
+## 0.0.3
+- Change README
+
 ## 0.0.2
-- Fix README
+- Change README
 
 ## 0.0.1
 - Initial release
