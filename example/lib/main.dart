@@ -47,13 +47,19 @@ class _HomePage extends StatelessWidget {
               child: Text('Show Shared Preferences'),
             ),
             SizedBox(height: 44),
-            ElevatedButton(
+            OutlinedButton(
               onPressed: () async {
                 final pref = await SharedPreferences.getInstance();
                 final key = _generateRandomString(10);
-                final value = Random(0).nextInt(100);
-                final success = await pref.setInt(key, value);
+                final value = _generateRandomString(30);
+                final success = await pref.setString(key, value);
                 print('Set keyValue: $success -> {$key, $value}');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Set keyValue: $success -> {$key, $value}'),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
               },
               child: Text('Add example keyValue'),
             ),
