@@ -4,7 +4,7 @@ A simple debug package for [shared_preferences](https://pub.dev/packages/shared_
 
 This package shows and delete some `shared_preferences` values more easily.
 
-[demo](https://user-images.githubusercontent.com/12729025/147811367-974e740a-4f58-4847-b256-f653a2790c4c.gif)
+![demo](https://user-images.githubusercontent.com/12729025/147811367-974e740a-4f58-4847-b256-f653a2790c4c.gif)
 
 ## Usage
 
