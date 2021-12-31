@@ -14,10 +14,10 @@ Just use `SharedPreferencesDebugPage()` anywhere you want.
 ElevatedButton(
   onPressed: () => Navigator.push(
     context,
+    // Use it as new screen.
     MaterialPageRoute<void>(
       builder: (context) => SharedPreferencesDebugPage(),
     ),
   ),
-  child: Text('Show shared_preferences value'),
 ),
 ```
