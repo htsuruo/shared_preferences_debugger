@@ -40,7 +40,7 @@ class _HomePage extends StatelessWidget {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (context) => PrefDebug(),
+                  builder: (context) => SharedPreferencesDebugPage(),
                   fullscreenDialog: true,
                 ),
               ),

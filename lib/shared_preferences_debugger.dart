@@ -1,2 +1,2 @@
-export 'pref_debug.dart';
-export 'service.dart';
+export 'src/service.dart';
+export 'src/shared_preferences_debug_page.dart';
