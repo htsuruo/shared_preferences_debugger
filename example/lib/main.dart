@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_debugger/shared_preferences_debugger.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Shared preferences debugger example',
+      title: 'Shared preferences debugger',
       theme: ThemeData.from(
         colorScheme: ColorScheme.light(),
       ),
@@ -31,40 +32,37 @@ class _HomePage extends StatelessWidget {
         title: Text(
           runtimeType.toString(),
         ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (context) => SharedPreferencesDebugPage(),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute(
+                  builder: (context) => const SharedPreferencesDebugPage(),
                   fullscreenDialog: true,
                 ),
+              );
+            },
+            icon: const Icon(Icons.bug_report),
+          ),
+        ],
+      ),
+      body: Center(
+        child: OutlinedButton(
+          onPressed: () async {
+            final pref = await SharedPreferences.getInstance();
+            final key = _generateRandomString(10);
+            final value = _generateRandomString(30);
+            final success = await pref.setString(key, value);
+            print('Set keyValue: $success -> {$key, $value}');
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Set keyValue: $success -> {$key, $value}'),
+                behavior: SnackBarBehavior.floating,
               ),
-              child: Text('Show Shared Preferences'),
-            ),
-            SizedBox(height: 44),
-            OutlinedButton(
-              onPressed: () async {
-                final pref = await SharedPreferences.getInstance();
-                final key = _generateRandomString(10);
-                final value = _generateRandomString(30);
-                final success = await pref.setString(key, value);
-                print('Set keyValue: $success -> {$key, $value}');
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Set keyValue: $success -> {$key, $value}'),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
-              child: Text('Add example keyValue'),
-            ),
-          ],
+            );
+          },
+          child: Text('Add sample value'),
         ),
       ),
     );

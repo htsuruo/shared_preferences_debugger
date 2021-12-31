@@ -13,13 +13,14 @@ Just use `SharedPreferencesDebugPage()` anywhere you want.
 `SharedPreferencesDebugPage()` is wrapper of `Scaffold`, so it recommend used as new screen as below.
 
 ```dart
-ElevatedButton(
-  onPressed: () => Navigator.push(
-    context,
-    // Use it as new screen.
-    MaterialPageRoute<void>(
-      builder: (context) => SharedPreferencesDebugPage(),
-    ),
-  ),
+IconButton(
+  onPressed: () {
+    Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (context) => const SharedPreferencesDebugPage(),
+      ),
+    );
+  },
+  icon: const Icon(Icons.bug_report),
 ),
 ```
