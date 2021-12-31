@@ -1,6 +1,6 @@
 name: shared_preferences_debugger
 description: Debugger for `shared_preferences` plugin
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/HTsuruo/shared_preferences_debugger
 
 environment:
