@@ -54,6 +54,7 @@ class _HomePage extends StatelessWidget {
                 final value = _generateRandomString(30);
                 final success = await pref.setString(key, value);
                 print('Set keyValue: $success -> {$key, $value}');
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Set keyValue: $success -> {$key, $value}'),
