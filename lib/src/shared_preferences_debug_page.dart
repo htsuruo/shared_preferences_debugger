@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences_debugger/src/service.dart';
 
 class SharedPreferencesDebugPage extends StatelessWidget {
-  const SharedPreferencesDebugPage({Key? key}) : super(key: key);
+  const SharedPreferencesDebugPage({super.key});
 
   @override
   Widget build(BuildContext context) {

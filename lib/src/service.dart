@@ -21,7 +21,7 @@ class Service extends ChangeNotifier {
         (key) => MapEntry(key, pref.get(key)),
       )
       .toList()
-        ..sort((a, b) => a.key.compareTo(b.key));
+    ..sort((a, b) => a.key.compareTo(b.key));
 
   void delete({required String key}) {
     pref.remove(key);
