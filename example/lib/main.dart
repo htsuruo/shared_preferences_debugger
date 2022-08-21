@@ -13,60 +13,57 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const title = 'Shared preferences debugger';
     return MaterialApp(
-      title: 'Shared preferences debugger',
+      title: title,
       theme: ThemeData.from(
         colorScheme: const ColorScheme.light(),
       ),
-      home: const _HomePage(),
-    );
-  }
-}
-
-class _HomePage extends StatelessWidget {
-  const _HomePage();
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          runtimeType.toString(),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push<void>(
-                MaterialPageRoute(
-                  builder: (context) => const SharedPreferencesDebugPage(),
-                  fullscreenDialog: true,
+      home: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text(title),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push<void>(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const SharedPreferencesDebugPage(),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.bug_report),
                 ),
-              );
-            },
-            icon: const Icon(Icons.bug_report),
-          ),
-        ],
-      ),
-      body: Center(
-        child: OutlinedButton(
-          onPressed: () async {
-            final messenger = ScaffoldMessenger.of(context);
-            final pref = await SharedPreferences.getInstance();
-            final key = _generateRandomString(10);
-            final value = _generateRandomString(30);
-            final success = await pref.setString(key, value);
-            // ignore: avoid_print
-            print('Set keyValue: $success -> {$key, $value}');
-            messenger
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Text('Set keyValue: $success -> {$key, $value}'),
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
-          },
-          child: const Text('Add sample value'),
-        ),
+              ],
+            ),
+            body: Center(
+              child: OutlinedButton(
+                onPressed: () async {
+                  final messenger = ScaffoldMessenger.of(context);
+                  final pref = await SharedPreferences.getInstance();
+                  final key = _generateRandomString(10);
+                  final value = _generateRandomString(30);
+                  final success = await pref.setString(key, value);
+                  // ignore: avoid_print
+                  print('Set keyValue: $success -> {$key, $value}');
+                  messenger
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        content:
+                            Text('Set keyValue: $success -> {$key, $value}'),
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
+                },
+                child: const Text('Add sample value'),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
