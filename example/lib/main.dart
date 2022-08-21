@@ -1,24 +1,24 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_debugger/shared_preferences_debugger.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shared preferences debugger',
       theme: ThemeData.from(
-        colorScheme: ColorScheme.light(),
+        colorScheme: const ColorScheme.light(),
       ),
-      home: _HomePage(),
+      home: const _HomePage(),
     );
   }
 }
@@ -62,7 +62,7 @@ class _HomePage extends StatelessWidget {
               ),
             );
           },
-          child: Text('Add sample value'),
+          child: const Text('Add sample value'),
         ),
       ),
     );
@@ -70,16 +70,16 @@ class _HomePage extends StatelessWidget {
 }
 
 String _generateRandomString(int length) {
-  const _randomChars =
+  const randomChars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const _charsLength = _randomChars.length;
-  final rand = new Random();
-  final codeUnits = new List.generate(
+  const charsLength = randomChars.length;
+  final rand = Random();
+  final codeUnits = List.generate(
     length,
     (index) {
-      final n = rand.nextInt(_charsLength);
-      return _randomChars.codeUnitAt(n);
+      final n = rand.nextInt(charsLength);
+      return randomChars.codeUnitAt(n);
     },
   );
-  return new String.fromCharCodes(codeUnits);
+  return String.fromCharCodes(codeUnits);
 }
