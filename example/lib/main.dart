@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key? key}) : super(key: key);
+  const _HomePage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,18 +49,21 @@ class _HomePage extends StatelessWidget {
       body: Center(
         child: OutlinedButton(
           onPressed: () async {
+            final messenger = ScaffoldMessenger.of(context);
             final pref = await SharedPreferences.getInstance();
             final key = _generateRandomString(10);
             final value = _generateRandomString(30);
             final success = await pref.setString(key, value);
+            // ignore: avoid_print
             print('Set keyValue: $success -> {$key, $value}');
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Set keyValue: $success -> {$key, $value}'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
+            messenger
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text('Set keyValue: $success -> {$key, $value}'),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
           },
           child: const Text('Add sample value'),
         ),
@@ -71,7 +74,7 @@ class _HomePage extends StatelessWidget {
 
 String _generateRandomString(int length) {
   const randomChars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const charsLength = randomChars.length;
   final rand = Random();
   final codeUnits = List.generate(

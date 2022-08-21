@@ -19,6 +19,7 @@ class SharedPreferencesDebugPage extends StatelessWidget {
             Builder(
               builder: (context) => IconButton(
                 onPressed: () async {
+                  final provider = Provider.of<Service>(context, listen: false);
                   final res = await showDialog<bool>(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -42,7 +43,7 @@ class SharedPreferencesDebugPage extends StatelessWidget {
                       ) ??
                       false;
                   if (res) {
-                    Provider.of<Service>(context, listen: false).deleteAll();
+                    provider.deleteAll();
                   }
                 },
                 icon: const Icon(Icons.delete),
