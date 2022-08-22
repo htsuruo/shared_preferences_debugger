@@ -4,6 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 typedef PrefMap = MapEntry<String, Object?>;
 
+///[SharedPreferencesDebugPage] is management screen for
+/// `shared_preferences` values.
+/// And also, it's wrapper of [Scaffold] so recommend to use as new screen.
 class SharedPreferencesDebugPage extends StatefulWidget {
   const SharedPreferencesDebugPage({super.key});
 

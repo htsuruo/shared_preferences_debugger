@@ -1,3 +1,7 @@
+## 0.0.5
+- Update README
+- Remove `provider` dependency
+
 ## 0.0.4
 - Update README
 

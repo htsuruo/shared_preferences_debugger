@@ -10,7 +10,7 @@ You can **show** and **delete** some `shared_preferences` values more easily.
 
 Just use `SharedPreferencesDebugPage()` anywhere you want.
 
-`SharedPreferencesDebugPage()` is wrapper of `Scaffold`, so it recommend used as new screen like following code.
+`SharedPreferencesDebugPage()` is wrapper of `Scaffold`, so it is recommend to use as new screen like following code..
 
 ```dart
 IconButton(
