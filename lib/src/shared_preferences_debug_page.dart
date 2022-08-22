@@ -18,6 +18,7 @@ class SharedPreferencesDebugPage extends StatelessWidget {
           actions: [
             Builder(
               builder: (context) => IconButton(
+                icon: const Icon(Icons.delete),
                 onPressed: () async {
                   final provider = Provider.of<Service>(context, listen: false);
                   final res = await showDialog<bool>(
@@ -46,7 +47,6 @@ class SharedPreferencesDebugPage extends StatelessWidget {
                     provider.deleteAll();
                   }
                 },
-                icon: const Icon(Icons.delete),
               ),
             ),
           ],
@@ -57,6 +57,8 @@ class SharedPreferencesDebugPage extends StatelessWidget {
                   child: Text('Shared Preferences Value is Empty'),
                 )
               : ListView.separated(
+                  itemCount: v.keyValues.length,
+                  separatorBuilder: (context, _) => const Divider(height: 0),
                   itemBuilder: (context, index) {
                     final keyValue = v.keyValues[index];
                     final value = keyValue.value.toString();
@@ -80,24 +82,21 @@ class SharedPreferencesDebugPage extends StatelessWidget {
                                 .delete(key: keyValue.key),
                       ),
                       onTap: () {
+                        final messenger = ScaffoldMessenger.of(context);
                         Clipboard.setData(
                           ClipboardData(text: value),
                         );
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Copied: $value',
+                        messenger
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(
+                            SnackBar(
+                              content: Text('Copied: $value'),
+                              behavior: SnackBarBehavior.floating,
                             ),
-                            behavior: SnackBarBehavior.floating,
-                          ),
-                        );
+                          );
                       },
                     );
                   },
-                  separatorBuilder: (context, index) =>
-                      const Divider(height: 0),
-                  itemCount: v.keyValues.length,
                 ),
         ),
       ),
