@@ -2,9 +2,11 @@
 
 A simple debug package for [shared_preferences](https://pub.dev/packages/shared_preferences).
 
-You can **show** and **delete** some `shared_preferences` values more easily.
+You can **show** and **copy to clipboard**, **delete** some `shared_preferences` values more easily.
 
-![](https://user-images.githubusercontent.com/12729025/147811367-974e740a-4f58-4847-b256-f653a2790c4c.gif)
+| Sample |
+| --- |
+| <img src="https://user-images.githubusercontent.com/12729025/240113167-86a04a37-ba1f-404c-b92a-cab7fcc64963.gif" width="400"> |
 
 ## Usage
 
