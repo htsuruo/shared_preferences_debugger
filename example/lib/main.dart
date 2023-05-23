@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: ThemeData.from(
+        useMaterial3: true,
         colorScheme: const ColorScheme.light(),
       ),
       home: Builder(
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
               title: const Text(title),
               actions: [
                 IconButton(
+                  color: Theme.of(context).colorScheme.primary,
                   onPressed: () {
                     Navigator.of(context).push<void>(
                       MaterialPageRoute(
@@ -40,7 +42,9 @@ class MyApp extends StatelessWidget {
               ],
             ),
             body: Center(
-              child: OutlinedButton(
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.add),
+                label: const Text('Add sample value'),
                 onPressed: () async {
                   final messenger = ScaffoldMessenger.of(context);
                   final pref = await SharedPreferences.getInstance();
@@ -59,7 +63,6 @@ class MyApp extends StatelessWidget {
                       ),
                     );
                 },
-                child: const Text('Add sample value'),
               ),
             ),
           );
