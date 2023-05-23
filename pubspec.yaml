@@ -1,5 +1,5 @@
 name: shared_preferences_debugger
-description: Debugger for `shared_preferences` plugin
+description: This package is designed to simplify the debugging of the shared_preferences plugin package.
 version: 0.1.0
 repository: https://github.com/HTsuruo/shared_preferences_debugger
 

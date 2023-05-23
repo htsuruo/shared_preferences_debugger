@@ -1,8 +1,8 @@
 # shared_preferences_debugger
 
-A simple debug package for [shared_preferences](https://pub.dev/packages/shared_preferences).
+This package is designed to simplify the debugging of the [shared_preferences](https://pub.dev/packages/shared_preferences) plugin package.
 
-You can **show** and **copy to clipboard**, **delete** some `shared_preferences` values more easily.
+By using this package, you can easily **display**, **copy to clipboard**, and **delete** the data stored in shared_preferences.
 
 | Sample |
 | --- |
