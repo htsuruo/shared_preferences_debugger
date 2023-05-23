@@ -45,43 +45,50 @@ class _SharedPreferencesDebugPageState
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    const paddingIconRight = 8.0;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shared Preference Debugger'),
+        title: const FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text('Shared Preference Debugger'),
+        ),
         actions: [
           Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () async {
-                final res = await showDialog<bool>(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Confirm'),
-                        content: const Text('Delete all?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                            },
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, true);
-                            },
-                            child: const Text('OK'),
-                          )
-                        ],
-                      ),
-                    ) ??
-                    false;
-                if (res) {
-                  _prefs.getKeys().forEach((key) {
-                    _prefs.remove(key);
-                  });
-                  _updateKeyValues();
-                }
-              },
+            builder: (context) => Padding(
+              padding: const EdgeInsets.only(right: paddingIconRight),
+              child: IconButton(
+                icon: const Icon(Icons.delete_sweep),
+                onPressed: () async {
+                  final res = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Confirm'),
+                          content: const Text('Delete all?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              },
+                              child: const Text('OK'),
+                            )
+                          ],
+                        ),
+                      ) ??
+                      false;
+                  if (res) {
+                    _prefs.getKeys().forEach((key) {
+                      _prefs.remove(key);
+                    });
+                    _updateKeyValues();
+                  }
+                },
+              ),
             ),
           ),
         ],
@@ -98,6 +105,8 @@ class _SharedPreferencesDebugPageState
                 final value = keyValue.value.toString();
                 return ListTile(
                   visualDensity: VisualDensity.compact,
+                  contentPadding:
+                      const EdgeInsets.only(left: 16, right: paddingIconRight),
                   title: Text(keyValue.key),
                   subtitle: Text(
                     value,
