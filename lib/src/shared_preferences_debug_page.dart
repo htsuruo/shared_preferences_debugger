@@ -101,7 +101,7 @@ class _SharedPreferencesDebugPageState
                   title: Text(keyValue.key),
                   subtitle: Text(
                     value,
-                    style: theme.textTheme.bodyText2!.copyWith(
+                    style: theme.textTheme.bodyMedium!.copyWith(
                       color: colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
